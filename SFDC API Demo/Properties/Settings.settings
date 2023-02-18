@@ -5,5 +5,17 @@
     <Setting Name="SFDC_API_Demo_SFDC_SforceService" Type="(Web Service URL)" Scope="Application">
       <Value Profile="(Default)">https://login.salesforce.com/services/Soap/c/57.0/0DFDp0000000HQ6</Value>
     </Setting>
+    <Setting Name="SFDC_API_Demo_SFDC_Partner_SforceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://login.salesforce.com/services/Soap/u/57.0</Value>
+    </Setting>
+    <Setting Name="username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">admin@arc902.1077.com</Value>
+    </Setting>
+    <Setting Name="password" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">P@$$W0rD!</Value>
+    </Setting>
+    <Setting Name="token" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AQauA8mYbflk3bDzoYuinKxh</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

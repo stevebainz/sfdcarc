@@ -32,5 +32,42 @@ namespace SFDC_API_Demo.Properties {
                 return ((string)(this["SFDC_API_Demo_SFDC_SforceService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://login.salesforce.com/services/Soap/u/57.0")]
+        public string SFDC_API_Demo_SFDC_Partner_SforceService {
+            get {
+                return ((string)(this["SFDC_API_Demo_SFDC_Partner_SforceService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("admin@arc902.1077.com")]
+        public string username {
+            get {
+                return ((string)(this["username"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("P@$$W0rD!")]
+        public string password {
+            get {
+                return ((string)(this["password"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("AQauA8mYbflk3bDzoYuinKxh")]
+        public string token {
+            get {
+                return ((string)(this["token"]));
+            }
+        }
     }
 }

@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "c704c9ce-3e79-4bb8-af2c-4d3d46a738f1": {
+      "ProjectGuid": "c704c9ce-3e79-4bb8-af2c-4d3d46a738f1",
+      "DisplayName": "SFDC API Demo",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
