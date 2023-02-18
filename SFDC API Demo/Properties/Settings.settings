@@ -1,0 +1,9 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SFDC_API_Demo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SFDC_API_Demo_SFDC_SforceService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://login.salesforce.com/services/Soap/c/57.0/0DFDp0000000HQ6</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
