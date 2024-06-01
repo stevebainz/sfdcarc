@@ -1,0 +1,1933 @@
+{
+	"info": {
+		"_postman_id": "89e66557-17ba-498d-a042-6691e91dfbf3",
+		"name": "ARC101Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1282513"
+	},
+	"item": [
+		{
+			"name": "SOAP API",
+			"item": [
+				{
+					"name": "SOAP Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonObject = xml2Json(responseBody);",
+									"var sessionId = jsonObject[\"soapenv:Envelope\"][\"soapenv:Body\"][\"loginResponse\"][\"result\"][\"sessionId\"];",
+									"var serverUrl = jsonObject[\"soapenv:Envelope\"][\"soapenv:Body\"][\"loginResponse\"][\"result\"][\"serverUrl\"];",
+									"pm.environment.set(\"SoapSessionId\", sessionId);",
+									"pm.environment.set(\"SoapServerUrl\", serverUrl);",
+									"pm.environment.set(\"_accessToken\", sessionId);",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "login",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <login xmlns=\"urn:enterprise.soap.sforce.com\">\n      <username>{{username}}</username>\n      <password>{{password}}{{secretToken}}</password>\n    </login>\n  </soap:Body>\n</soap:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SoapBaseUrl}}/services/Soap/c/59.0/0DF1S0000008TZV",
+							"host": [
+								"{{SoapBaseUrl}}"
+							],
+							"path": [
+								"services",
+								"Soap",
+								"c",
+								"59.0",
+								"0DF1S0000008TZV"
+							]
+						},
+						"description": "Login to the Salesforce.com SOAP Api"
+					},
+					"response": [
+						{
+							"name": "login response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <login xmlns=\"urn:enterprise.soap.sforce.com\">\n      <username>string</username>\n      <password>string</password>\n    </login>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <loginResponse xmlns=\"urn:enterprise.soap.sforce.com\">\n      <result>\n        <metadataServerUrl>string</metadataServerUrl>\n        <passwordExpired>true</passwordExpired>\n        <sandbox>true</sandbox>\n        <serverUrl>string</serverUrl>\n        <sessionId>string</sessionId>\n        <userId>AXbr4jK9giIhuvv6jB</userId>\n        <userInfo>\n          <accessibilityMode>true</accessibilityMode>\n          <chatterExternal>true</chatterExternal>\n          <currencySymbol>string</currencySymbol>\n          <orgAttachmentFileSizeLimit>100</orgAttachmentFileSizeLimit>\n          <orgDefaultCurrencyIsoCode>string</orgDefaultCurrencyIsoCode>\n          <orgDefaultCurrencyLocale>string</orgDefaultCurrencyLocale>\n          <orgDisallowHtmlAttachments>true</orgDisallowHtmlAttachments>\n          <orgHasPersonAccounts>true</orgHasPersonAccounts>\n          <organizationId>AsoXKkLK0YMCjFjjJ0</organizationId>\n          <organizationMultiCurrency>true</organizationMultiCurrency>\n          <organizationName>string</organizationName>\n          <profileId>wDUnaMBv51uK03vKeu</profileId>\n          <roleId>xU7fj4EJfDUou31LrH</roleId>\n          <sessionSecondsValid>100</sessionSecondsValid>\n          <userDefaultCurrencyIsoCode>string</userDefaultCurrencyIsoCode>\n          <userEmail>string</userEmail>\n          <userFullName>string</userFullName>\n          <userId>NZGw2KZ1C5iiWyeW2S</userId>\n          <userLanguage>string</userLanguage>\n          <userLocale>string</userLocale>\n          <userName>string</userName>\n          <userTimeZone>string</userTimeZone>\n          <userType>string</userType>\n          <userUiSkin>string</userUiSkin>\n        </userInfo>\n      </result>\n    </loginResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "login fault - LoginFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <LoginFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "login fault - UnexpectedErrorFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <UnexpectedErrorFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "login fault - InvalidIdFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <InvalidIdFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				},
+				{
+					"name": "SOAP Query",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml",
+								"type": "text"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "\"\"",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:urn=\"urn:enterprise.soap.sforce.com\" xmlns:urn1=\"urn:sobject.enterprise.soap.sforce.com\">\n  <soapenv:Header>\n    <urn:SessionHeader>\n        <urn:sessionId>{{SoapSessionId}}</urn:sessionId>\n    </urn:SessionHeader>\n  </soapenv:Header>\n  <soapenv:Body>\n    <urn:query>\n\t    <urn:queryString>\n        SELECT Id FROM Contact\n      </urn:queryString>\n\t   </urn:query>\n   </soapenv:Body>\n</soapenv:Envelope>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{SoapServerUrl}}",
+							"host": [
+								"{{SoapServerUrl}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SOAP Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/xml; charset=utf-8"
+							},
+							{
+								"key": "SOAPAction",
+								"value": "create",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soapenv:Envelope\n    xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"\n    xmlns:urn=\"urn:enterprise.soap.sforce.com\"\n    xmlns:urn1=\"urn:sobject.enterprise.soap.sforce.com\">\n    <soapenv:Header>\n        <urn:SessionHeader>\n            <urn:sessionId>{{SoapSessionId}}</urn:sessionId>\n        </urn:SessionHeader>\n    </soapenv:Header>\n    <soapenv:Body>\n        <urn:create>\n            <urn:sObjects xsi:type=\"Account\"\n                xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\">\n                <Name>This is a test account from Postman - 2024-0-18</Name>\n                <ARC101Demo__c>This is a test account from Postman - 2024-0-18</ARC101Demo__c>\n            </urn:sObjects>\n        </urn:create>\n    </soapenv:Body>\n</soapenv:Envelope>\n",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://arc10115060com.my.salesforce.com/services/Soap/c/60.0/00D2G000000kNpn/0DF2G000000XZuU",
+							"protocol": "https",
+							"host": [
+								"arc10115060com",
+								"my",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"Soap",
+								"c",
+								"60.0",
+								"00D2G000000kNpn",
+								"0DF2G000000XZuU"
+							]
+						},
+						"description": "Create a set of new sObjects"
+					},
+					"response": [
+						{
+							"name": "create response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <create xmlns=\"urn:enterprise.soap.sforce.com\">\n      <sObjects>\n        <Id>IRRefinOO8TXedNNBi</Id>\n      </sObjects>\n    </create>\n  </soap:Body>\n</soap:Envelope>\n",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <createResponse xmlns=\"urn:enterprise.soap.sforce.com\">\n      <result>\n        <errors>\n          <extendedErrorDetails>\n            <extendedErrorCode>ACTIONCALL_DUPLICATE_INPUT_PARAM</extendedErrorCode>\n          </extendedErrorDetails>\n          <message>string</message>\n          <statusCode>ALERT_NOTIFICATION_LIMIT_EXCEEDED</statusCode>\n        </errors>\n        <id>oOFiqvI1QBlceY1JxJ</id>\n        <success>true</success>\n      </result>\n    </createResponse>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "create fault - InvalidSObjectFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <InvalidSObjectFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "create fault - UnexpectedErrorFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <UnexpectedErrorFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "create fault - InvalidIdFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <InvalidIdFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						},
+						{
+							"name": "create fault - InvalidFieldFault",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "text/xml; charset=utf-8"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "incorrect body message",
+									"options": {
+										"raw": {
+											"language": "xml"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://login.salesforce.com/services/Soap/c/59.0/0DF1S0000008TZV",
+									"protocol": "https",
+									"host": [
+										"login",
+										"salesforce",
+										"com"
+									],
+									"path": [
+										"services",
+										"Soap",
+										"c",
+										"59.0",
+										"0DF1S0000008TZV"
+									]
+								}
+							},
+							"status": "not OK",
+							"code": 500,
+							"_postman_previewlanguage": "xml",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/xml; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\">\n  <soap:Body>\n    <InvalidFieldFault xmlns=\"urn:fault.enterprise.soap.sforce.com\"/>\n  </soap:Body>\n</soap:Envelope>\n"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "REST API",
+			"item": [
+				{
+					"name": "Query",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/query/?q=SELECT Id, FirstName, LastName from Contact",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"query",
+								""
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "SELECT Id, FirstName, LastName from Contact",
+									"description": "A SOQL query. Note that you will need to replace spaces with “+” characters in your query string to create a valid URI. An example query parameter string might look like: “SELECT+Name+FROM+MyObject”. If the SOQL query string is invalid, a MALFORMED_QUERY response is returned."
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SObject Create",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Name\": \"REST Demo 10-23-2023\",\n    \"Description\" : \"ARC101 Demo Description 10-23\",\n    \"BillingStreet\": \"123 Main Street\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/sobjects/Account",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"sobjects",
+								"Account"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Composite",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"POST\",\n      \"url\": \"/services/data/v51.0/sobjects/Account\",\n      \"referenceId\": \"refAccount\",\n      \"body\": {\n        \"Name\": \"SampleAccount\"\n      }\n    },\n    {\n      \"method\": \"POST\",\n      \"url\": \"/services/data/v51.0/sobjects/Contact\",\n      \"referenceId\": \"refContact\",\n      \"body\": {\n        \"LastName\": \"SampleContact\",\n        \"AccountId\": \"@{refAccount.id}\"\n      }\n    }\n  ]\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/composite/",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"composite",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "SObject Rows Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"field API name\": \"value\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/sobjects/:SOBJECT_API_NAME/:RECORD_ID",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"sobjects",
+								":SOBJECT_API_NAME",
+								":RECORD_ID"
+							],
+							"variable": [
+								{
+									"key": "SOBJECT_API_NAME",
+									"value": ""
+								},
+								{
+									"key": "RECORD_ID",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{_accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "BULK API",
+			"item": [
+				{
+					"name": "Create job Query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+									"",
+									"const response = JSON.parse(pm.response.text())",
+									"context.set(\"_jobId\", response.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"operation\" : \"query\",\n  \"query\" : \"SELECT Id, Name, Description from Account\",\n  \"contentType\" : \"CSV\",\n  \"columnDelimiter\" : \"COMMA\",\n  \"lineEnding\" : \"CRLF\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/query",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"query"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Info Query",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/query/{{_jobId}}",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"query",
+								"{{_jobId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Query Result",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"type": "text",
+								"value": "test/csv"
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/query/{{_jobId}}/results",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"query",
+								"{{_jobId}}",
+								"results"
+							],
+							"query": [
+								{
+									"key": "locator",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "maxRecords",
+									"value": "",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Job Query Result",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "test/csv"
+									}
+								],
+								"url": {
+									"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/query/{{_jobId}}/results",
+									"host": [
+										"{{_endpoint}}"
+									],
+									"path": [
+										"services",
+										"data",
+										"v{{version}}",
+										"jobs",
+										"query",
+										"{{_jobId}}",
+										"results"
+									],
+									"query": [
+										{
+											"key": "locator",
+											"value": "",
+											"disabled": true
+										},
+										{
+											"key": "maxRecords",
+											"value": "",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Mon, 13 Nov 2023 20:54:41 GMT"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=63072000; includeSubDomains"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "1; mode=block"
+								},
+								{
+									"key": "X-Robots-Tag",
+									"value": "none"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache,must-revalidate,max-age=0,no-store,private"
+								},
+								{
+									"key": "Sforce-Limit-Info",
+									"value": "api-usage=34/201000"
+								},
+								{
+									"key": "Sforce-Locator",
+									"value": "null"
+								},
+								{
+									"key": "Sforce-NumberOfRecords",
+									"value": "142"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/csv"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "\"Id\",\"Name\",\"Description\"\r\n\"0011S00001HclpUQAR\",\"This is a test account\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001HcmkQQAR\",\"New Test Account\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001HctSuQAJ\",\"REST Demo2\",\"ARC101 Demo Description\"\r\n\"0011S00001HculCQAR\",\"New Test Account\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001HcxZ6QAJ\",\"New Test Account\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001Hcxi3QAB\",\"This is a test account\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001Hcy60QAB\",\"Updated via the rest APIasdfasdfasdfasdgasdgsdafgdsfgsdfgsdfgsdfgsdfgsdfgsdfgerewdfsgsdgsdgdsgdsgdsfgdsgdsfgdsgdsfgsdfgdsfgsdfgdsfgsdfgdsfgdsfgdfgdfg\",\"ARC101 Demo Description 10-23\"\r\n\"0011S00001Hd64dQAB\",\"SampleAccount 10-24-2023\",\"ARC101 Demo Account\"\r\n\"0011S00001Hd7c2QAB\",\"This is a CDC Account\",\"\"\r\n\"0011S00001I45v8QAB\",\"Ueno Systems\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45v9QAB\",\"Alveswood Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vAQAR\",\"Marais Tech Solutions\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vBQAR\",\"Windy City Network Solutions\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vCQAR\",\"Enmore Installations\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vDQAR\",\"Sentosa Network Services\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vEQAR\",\"Sutton Place Networking\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vFQAR\",\"Mimico Systems\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vGQAR\",\"Canuck Network Solutions\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vHQAR\",\"Fenway Engineering\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vIQAR\",\"Engeldamm Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vJQAR\",\"Colaba Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vKQAR\",\"West Airlines\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vLQAR\",\"ABC Labs\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vMQAR\",\"Ramsey Telecoms Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vNQAR\",\"Miller Mobile\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vOQAR\",\"Berk Hath Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vPQAR\",\"Arbuckle Laboratories\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vQQAR\",\"Vandelay Industries\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vRQAR\",\"Electric Company\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vSQAR\",\"STC Labs\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vTQAR\",\"Red Packages\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vUQAR\",\"Glenn Media\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vVQAR\",\"Dixon Chemical (Spain)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vWQAR\",\"St Francis Hospital\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vXQAR\",\"Acme Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vYQAR\",\"Dixon Chemical\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vZQAR\",\"Acme Inc (London)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vaQAB\",\"Bluth Company\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vbQAB\",\"Carl Financial Group\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vcQAB\",\"George Mobile\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vdQAB\",\"Torres Telecoms Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45veQAB\",\"Allen Brothers Labs\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vfQAB\",\"Howell Cargo\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vgQAB\",\"Starlux Hotels & Resorts\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vhQAB\",\"Canson\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45viQAB\",\"Firefly Insurance\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vjQAB\",\"Roberts Hotels & Resorts\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vkQAB\",\"Mccormick Telecoms Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vlQAB\",\"Ecotech (Germany)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vmQAB\",\"Universal Motors\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vnQAB\",\"Jam Television\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45voQAB\",\"American Bank\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vpQAB\",\"ZiffCorp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vqQAB\",\"Rochir\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vrQAB\",\"House Central\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vsQAB\",\"Lowery Retail Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vtQAB\",\"Environmental Control Agency\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vuQAB\",\"Robbins Technologies Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vvQAB\",\"Powers Waste Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vwQAB\",\"HomeNet Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vxQAB\",\"Northtech Communications Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vyQAB\",\"Ferris Media\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45vzQAB\",\"Intron Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w0QAB\",\"Cable Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w1QAB\",\"Tarson Stores Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w2QAB\",\"Ecotech\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w3QAB\",\"Mckinney Foods Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w4QAB\",\"Dizon.net\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w5QAB\",\"Holt Transport Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w6QAB\",\"Alvarez Electrical\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w7QAB\",\"Initrode Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w8QAB\",\"Universal Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45w9QAB\",\"Cargo Inc\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wAQAR\",\"Jam Television (Singapore)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wBQAR\",\"ABC Telecom\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wCQAR\",\"Zevo Toys\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wDQAR\",\"XNet\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wEQAR\",\"Western Gas & Electrics\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wFQAR\",\"Wentworth Industries\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wGQAR\",\"Virtucon\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wHQAR\",\"Videlectrix\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wIQAR\",\"Carrys Candles\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wJQAR\",\"American Package\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wKQAR\",\"Arbuckle Laboratories (France)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wLQAR\",\"Arbuckle Laboratories (Germany)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wMQAR\",\"Axis Chemical Co\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wNQAR\",\"Universal Export\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wOQAR\",\"Three Waters\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wPQAR\",\"Colonial Movers\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wQQAR\",\"Extensive Enterprise\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wRQAR\",\"Globo Grupo\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wSQAR\",\"Globo-Chem\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wTQAR\",\"Incom Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wUQAR\",\"Initech\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wVQAR\",\"Industrial Automation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wWQAR\",\"Mainway Toys\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wXQAR\",\"General Products\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wYQAR\",\"LuthorCorp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wZQAR\",\"Globex Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45waQAB\",\"LexCorp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wbQAB\",\"Kumatsu Motors\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wcQAB\",\"Galaxy Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wdQAB\",\"Keedsler Motors\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45weQAB\",\"Nizu (EMEA)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wfQAB\",\"Tessier-Ashpool\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wgQAB\",\"Megadodo Publications\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45whQAB\",\"Osato Chemicals\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wiQAB\",\"QWERTY Logistics\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wjQAB\",\"Roboto Industries\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wkQAB\",\"Strickland Propane\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wlQAB\",\"Sirius Cybernetics\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wmQAB\",\"Sapient\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wnQAB\",\"Sombra Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45woQAB\",\"Sto Plains Holdings\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wpQAB\",\"Roxxon\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wqQAB\",\"Nizu\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wrQAB\",\"AMP Industries\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wsQAB\",\"Smithee Pictures\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wtQAB\",\"Water and Power\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wuQAB\",\"Barrytron\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wvQAB\",\"Thatherton Fuels\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wwQAB\",\"Primatech\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wxQAB\",\"Data Systems\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wyQAB\",\"Mammoth Pictures\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45wzQAB\",\"Vance Media Corp\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x0QAB\",\"SpringShield\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x1QAB\",\"Buck Foods\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x2QAB\",\"General Services Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x3QAB\",\"United Business Solutions\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x4QAB\",\"Lott Cargo Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x5QAB\",\"Lutron Technologies\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x6QAB\",\"JK Telecommunications\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x7QAB\",\"Leeding Engines Ltd\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x8QAB\",\"Starfish Publishing\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45x9QAB\",\"Corellian Engineering Corporation\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45xAQAR\",\"Monarch Playing Card Co\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45xBQAR\",\"Santek\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001I45xCQAR\",\"Starfish Publishing (Pittsburg)\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"0011S00001IGzVRQA1\",\"Sample Account for Entitlements\",\"ARC 101 10-23-2023 Bulk API\"\r\n\"001Kb00001Hf9ejIAB\",\"New Test Account\",\"\"\r\n\"001Kb00001HfB9QIAV\",\"This is a test account - ARC101 11/13/2023\",\"This is the description field\"\r\n\"001Kb00001HfBA9IAN\",\"Updated via the rest 11-13-2023\",\"ARC101 Demo Description 11-23\"\r\n"
+						}
+					]
+				},
+				{
+					"name": "Create job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+									"",
+									"const response = JSON.parse(pm.response.text())",
+									"context.set(\"_jobId\", response.id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"object\": \"Account\",\n    \"operation\": \"update\",\n    \"lineEnding\": \"CRLF\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload Job Data",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "text/csv"
+							}
+						],
+						"body": {
+							"mode": "file",
+							"file": {
+								"src": "/Users/stevebaines/Downloads/accounts.csv"
+							}
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}/batches",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest",
+								"{{_jobId}}",
+								"batches"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close or Abort a Job",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"state\":\"UploadComplete\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest",
+								"{{_jobId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Info",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "00D2G000000kNpn!AQ8AQGrz1zF1zoCZFoGCVvlwT.wLadrrJHSKsSoW4rCVFTKOiMUM0n8c9mVfqe5V0.50hmO1sL_.cy4A5zrg0nTS_YTbielj",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest",
+								"{{_jobId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Successful Record Results",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}/successfulResults",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest",
+								"{{_jobId}}",
+								"successfulResults"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Job Failed Record Results",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{_accessToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{_endpoint}}/services/data/v{{version}}/jobs/ingest/{{_jobId}}/failedResults",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"data",
+								"v{{version}}",
+								"jobs",
+								"ingest",
+								"{{_jobId}}",
+								"failedResults"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "APEX Rest Services",
+			"item": [
+				{
+					"name": "Apex REST Create Account",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+									"context.set(\"_accountId\", response.Id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"content-type": true,
+							"accept": true
+						}
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "00D2G000000kNpn!AQ8AQDe5XFYW_.nxas9gHtlPCDycIVmd6sPPBrAL6edj98BAh5Wa0Sh7pboktpVwc66RWSmTcra35pQQf3_P3U_Z3806uK.K",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\" : \"ARC101 Demo march 18\",\n  \"phone\" : \"707-555-1234\",\n  \"website\" : \"www.arc101.com\",\n  \"accountIndustry\" : \"Agriculture\"\n}"
+						},
+						"url": {
+							"raw": "{{_endpoint}}/services/apexrest/ARC101Account/",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"apexrest",
+								"ARC101Account",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apex REST Get Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "00D2G000000kNpn!AQ8AQDe5XFYW_.nxas9gHtlPCDycIVmd6sPPBrAL6edj98BAh5Wa0Sh7pboktpVwc66RWSmTcra35pQQf3_P3U_Z3806uK.K",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{_endpoint}}/services/apexrest/ARC101Account/0012G00002HTPlCQAX",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"apexrest",
+								"ARC101Account",
+								"0012G00002HTPlCQAX"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Apex REST Delete Account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "00D2G000000kNpn!AQ8AQDe5XFYW_.nxas9gHtlPCDycIVmd6sPPBrAL6edj98BAh5Wa0Sh7pboktpVwc66RWSmTcra35pQQf3_P3U_Z3806uK.K",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{_endpoint}}/services/apexrest/ARC101Account/0013x00002ROtcUAAT",
+							"host": [
+								"{{_endpoint}}"
+							],
+							"path": [
+								"services",
+								"apexrest",
+								"ARC101Account",
+								"0013x00002ROtcUAAT"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{_accessToken}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Username Password Flow",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"const id = jsonData.id.split('/');",
+							"",
+							"const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+							"context.set(\"_accessToken\", jsonData.access_token);",
+							"context.set(\"_endpoint\", jsonData.instance_url);",
+							"context.set(\"_userId\", id.pop());",
+							"context.set(\"_orgId\", id.pop());",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{clientId}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{clientSecret}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}{{secretToken}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}{{site}}/services/oauth2/token",
+					"host": [
+						"{{url}}{{site}}"
+					],
+					"path": [
+						"services",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Successful OAuth Username Password Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "client_id",
+									"value": "CLIENT_ID_GOES_HERE",
+									"type": "text"
+								},
+								{
+									"key": "client_secret",
+									"value": "CLIENT_SECRET_GOES_HERE",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "demo@pozil.org",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "PASSWORD_AND_SECURITY_TOKEN_GO_HERE",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://login.salesforce.com/services/oauth2/token",
+							"protocol": "https",
+							"host": [
+								"login",
+								"salesforce",
+								"com"
+							],
+							"path": [
+								"services",
+								"oauth2",
+								"token"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Wed, 06 Jan 2021 14:16:55 GMT"
+						},
+						{
+							"key": "Strict-Transport-Security",
+							"value": "max-age=31536002; includeSubDomains"
+						},
+						{
+							"key": "Public-Key-Pins-Report-Only",
+							"value": "pin-sha256=\"9n0izTnSRF+W4W4WhQB8duS2bxVLfzXsY=\"; pin-sha256=\"5kJvNEMw0KjrCAu7eXY5HZdvSP91w=\"; pin-sha256=\"njN4rRG+zPUPHlv4+foULwl1g=\"; max-age=86400; includeSubDomains; report-uri=\"https://a.forcesslreports.com/hpkp-report/00D58000000arpqm\";"
+						},
+						{
+							"key": "Expect-CT",
+							"value": "max-age=86400, report-uri=\"https://a.forcesslreports.com/Expect-CT-report/00D58000000arpqm\""
+						},
+						{
+							"key": "X-Robots-Tag",
+							"value": "none"
+						},
+						{
+							"key": "X-B3-TraceId",
+							"value": "c21e47e40ecc875d"
+						},
+						{
+							"key": "X-B3-SpanId",
+							"value": "c21e47e40ecc875d"
+						},
+						{
+							"key": "X-B3-Sampled",
+							"value": "0"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache,must-revalidate,max-age=0,no-store,private"
+						},
+						{
+							"key": "Expires",
+							"value": "Thu, 01 Jan 1970 00:00:00 GMT"
+						},
+						{
+							"key": "X-ReadOnlyMode",
+							"value": "false"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Vary",
+							"value": "Accept-Encoding"
+						},
+						{
+							"key": "Content-Encoding",
+							"value": "gzip"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"access_token\": \"ACCESS_TOKEN_GOES_HERE\",\n    \"instance_url\": \"https://pozil-dev-ed.my.salesforce.com\",\n    \"id\": \"https://login.salesforce.com/id/00D58000000arpqEAA/00558000000yFyDAAU\",\n    \"token_type\": \"Bearer\",\n    \"issued_at\": \"1609942615640\",\n    \"signature\": \"SIGNATURE_GOES_HERE\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Generic Event Demo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"content-type": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \n  \"pushEvents\": [\n      { \n          \"payload\": \"Correction: Lunch will be ready at 1:00PM\", \n          \"userIds\": [] \n      } \n   ] \n}"
+				},
+				"url": {
+					"raw": "{{_endpoint}}/services/data/v{{version}}/sobjects/StreamingChannel/0M63x000000GoS5CAK/push",
+					"host": [
+						"{{_endpoint}}"
+					],
+					"path": [
+						"services",
+						"data",
+						"v{{version}}",
+						"sobjects",
+						"StreamingChannel",
+						"0M63x000000GoS5CAK",
+						"push"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Client Credentials Flow",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const jsonData = pm.response.json();",
+							"",
+							"if(!jsonData.error){",
+							"    const id = jsonData.id.split('/');",
+							"    const context = pm.environment.name ? pm.environment : pm.collectionVariables;",
+							"    context.set(\"_accessToken\", jsonData.access_token);",
+							"    context.set(\"_endpoint\", jsonData.instance_url);",
+							"    context.set(\"_userId\", id.pop());",
+							"    context.set(\"_orgId\", id.pop());",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableCookies": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "{{clientId}}",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "{{clientSecret}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}{{site}}/services/oauth2/token",
+					"host": [
+						"{{url}}{{site}}"
+					],
+					"path": [
+						"services",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "oauth2",
+		"oauth2": [
+			{
+				"key": "grant_type",
+				"value": "implicit",
+				"type": "string"
+			},
+			{
+				"key": "state",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "scope",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "clientSecret",
+				"value": "{{clientSecret}}",
+				"type": "string"
+			},
+			{
+				"key": "clientId",
+				"value": "{{clientId}}",
+				"type": "string"
+			},
+			{
+				"key": "accessTokenUrl",
+				"value": "{{url}}/services/oauth2/token",
+				"type": "string"
+			},
+			{
+				"key": "authUrl",
+				"value": "{{url}}/services/oauth2/authorize",
+				"type": "string"
+			},
+			{
+				"key": "useBrowser",
+				"value": true,
+				"type": "boolean"
+			},
+			{
+				"key": "redirect_uri",
+				"value": "https://www.getpostman.com/oauth2/callback",
+				"type": "string"
+			},
+			{
+				"key": "client_authentication",
+				"value": "body",
+				"type": "string"
+			},
+			{
+				"key": "addTokenTo",
+				"value": "header",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"// Specifying Postman as the client for Salesforce logs ",
+					"pm.request.headers.add({key: 'Sforce-Call-Options', value: 'client=postman' });",
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "https://login.salesforce.com",
+			"type": "string"
+		},
+		{
+			"key": "version",
+			"value": "60.0",
+			"type": "string"
+		},
+		{
+			"key": "username",
+			"value": "admin@arc101.15060.com",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "password1",
+			"type": "string"
+		},
+		{
+			"key": "secretToken",
+			"value": "VemFd1fWL0gMX83Tmq5f0p5tK",
+			"type": "string"
+		},
+		{
+			"key": "clientId",
+			"value": "3MVG98_Psg5cppyYCmk1gZNC25o00SXpgpodlS29IZ6pXiHkt3xuPa5qIjBTtEgdsiMuIWVN_8F0jnwEtbDh4",
+			"type": "string"
+		},
+		{
+			"key": "clientSecret",
+			"value": "C9B928210B241B36D47FFF2FE9AD77D42485B969766069453AC2BE20055429ED",
+			"type": "string"
+		},
+		{
+			"key": "_accessToken",
+			"value": "00D2G000000kNpn!AQ8AQDe5XFYW_.nxas9gHtlPCDycIVmd6sPPBrAL6edj98BAh5Wa0Sh7pboktpVwc66RWSmTcra35pQQf3_P3U_Z3806uK.K\n",
+			"type": "string"
+		},
+		{
+			"key": "_endpoint",
+			"value": "https://arc10115060com.my.salesforce.com",
+			"type": "string"
+		},
+		{
+			"key": "_userId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "_orgId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "_refreshToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "SoapSessionId",
+			"value": ""
+		},
+		{
+			"key": "SoapBaseUrl",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "SoapServerUrl",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "_jobId",
+			"value": ""
+		}
+	]
+}

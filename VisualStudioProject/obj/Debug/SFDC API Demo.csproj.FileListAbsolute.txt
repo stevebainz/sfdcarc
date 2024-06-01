@@ -1,0 +1,24 @@
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.AssemblyReference.cache
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.SuggestedBindingRedirects.cache
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.CoreCompileInputs.cache
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.exe.config
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.exe
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.pdb
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.exe
+C:\Users\stevebaines\source\repos\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.pdb
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.AssemblyReference.cache
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.SuggestedBindingRedirects.cache
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.csproj.CoreCompileInputs.cache
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.exe
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\obj\Debug\SFDC API Demo.pdb
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.exe.config
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.exe
+\\Mac\Home\Downloads\SFDC API Demo\SFDC API Demo\bin\Debug\SFDC API Demo.pdb
+W:\Private\Professional\Repos\arc101\bin\Debug\SFDC API Demo.exe.config
+W:\Private\Professional\Repos\arc101\bin\Debug\SFDC API Demo.exe
+W:\Private\Professional\Repos\arc101\bin\Debug\SFDC API Demo.pdb
+W:\Private\Professional\Repos\arc101\obj\Debug\SFDC API Demo.csproj.AssemblyReference.cache
+W:\Private\Professional\Repos\arc101\obj\Debug\SFDC API Demo.csproj.SuggestedBindingRedirects.cache
+W:\Private\Professional\Repos\arc101\obj\Debug\SFDC API Demo.csproj.CoreCompileInputs.cache
+W:\Private\Professional\Repos\arc101\obj\Debug\SFDC API Demo.exe
+W:\Private\Professional\Repos\arc101\obj\Debug\SFDC API Demo.pdb
